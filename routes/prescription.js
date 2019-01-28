@@ -34,4 +34,26 @@ router.post("/addPrescription", function (req, res) {
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var prescriptionId= req.body.prescriptionId;
+    console.log(req.body.prescriptionId)
+
+    database.getUser(prescriptionId,(err,data)=>{
+        if (err) throw err;
+            //console.log(prescription);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "prescription not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
+
+
 module.exports = router;

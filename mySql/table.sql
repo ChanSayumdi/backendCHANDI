@@ -134,3 +134,12 @@ doctorRegNo VARCHAR(15),
  INSERT INTO appSchedule (appScheduleId,noOfAppointments,dateTimeIn,dateTimeOut,doctorRegNo)VALUE(" "," ");
 
  
+   CREATE TABLE medicine (
+     madicineName VARCHAR(100),
+      medicineNo VARCHAR(50),
+    CONSTRAINT pk_medicineNo PRIMARY KEY (medicineNo)
+
+ )
+ INSERT INTO medicine (madicineName, medicineNo)VALUE(" "," ");
+
+ 

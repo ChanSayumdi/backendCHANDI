@@ -32,4 +32,25 @@ router.post("/addAppSchedule", function (req, res) {
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var appScheduleId= req.body.appScheduleId;
+    console.log(req.body.appScheduleId)
+
+    database.getUser(appScheduleId,(err,data)=>{
+        if (err) throw err;
+            //console.log(appSchedule);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "appSchedule not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
+
 module.exports = router;

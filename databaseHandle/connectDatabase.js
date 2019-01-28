@@ -180,7 +180,7 @@ module.exports.getNotification = function(callback){
 }
 
 
-// new changes
+// insert data to tables
 module.exports.addRole = function(data ,callback){
  con.query(tableSchema.tables.role.adduser,[[data]],callback)
 }
@@ -229,14 +229,75 @@ module.exports.addMlt = function(data , callback){
     con.query(tableSchema.tables.appSchedule.adduser,[[data]],callback)
    }
 
+   
+   module.exports.addMedicine = function(data , callback){
+    con.query(tableSchema.tables.medicine.adduser,[[data]],callback)
+   }
+
+  
+   
+   //get data from tables
+   
    module.exports.getUser= function(data,callback){
     var nic={NIC:data}
     console.log(nic);
-    con.query(tableSchema.tables.users.getUser,nic,callback);  //get
+    con.query(tableSchema.tables.users.getUser,nic,callback);  
    }
 
+   module.exports.getUser= function(data,callback){
+    var mltRegNo={mltRegNo:data}
+    console.log(mltRegNo);
+    con.query(tableSchema.tables.mlt.getUser,mltRegNo,callback);  
+   }
 
+   module.exports.getUser= function(data,callback){
+    var patientId={patientId:data}
+    console.log(patientId);
+    con.query(tableSchema.tables.patient.getUser,patientId,callback);  
+   }
 
+   module.exports.getUser= function(data,callback){
+    var doctorRegNo={doctorRegNo:data}
+    console.log(doctorRegNo);
+    con.query(tableSchema.tables.doctor.getUser,doctorRegNo,callback);  
+   }
 
+   module.exports.getUser= function(data,callback){
+    var frontDeskId={frontDeskId:data}
+    console.log(frontDeskId);
+    con.query(tableSchema.tables.frontdesk.getUser,frontDeskId,callback);  
+   }
+
+   module.exports.getUser= function(data,callback){
+    var reportNo={reportNo:data}
+    console.log(reportNo);
+    con.query(tableSchema.tables.labreport.getUser,reportNo,callback);  
+   }
+
+   module.exports.getUser= function(data,callback){
+    var diseaseDetailId={diseaseDetailId:data}
+    console.log(diseaseDetailId);
+    con.query(tableSchema.tables.diseasedetail.getUser,diseaseDetailId,callback);  
+   }
+
+   module.exports.getUser= function(data,callback){
+    var prescriptionId={prescriptionId:data}
+    console.log(prescriptionId);
+    con.query(tableSchema.tables.prescription.getUser,prescriptionId,callback);  
+   }
+
+   module.exports.getUser= function(data,callback){
+    var appId={appId:data}
+    console.log(appId);
+    con.query(tableSchema.tables.appointment.getUser,appId,callback);  
+   }
+
+   module.exports.getUser= function(data,callback){
+    var appScheduleId={appScheduleId:data}
+    console.log(appScheduleId);
+    con.query(tableSchema.tables.appSchedule.getUser,appScheduleId,callback);  
+   }
+
+   
 
    

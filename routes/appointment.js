@@ -32,4 +32,25 @@ router.post("/addAppointment",function(req,res){
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var appId= req.body.appId;
+    console.log(req.body.appId)
+
+    database.getUser(appId,(err,data)=>{
+        if (err) throw err;
+            //console.log(appointment);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "appointment not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
+
 module.exports = router;

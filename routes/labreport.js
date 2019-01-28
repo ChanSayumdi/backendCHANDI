@@ -29,4 +29,24 @@ router.post("/addLabreport", function (req, res) {
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var reportNo= req.body.reportNo;
+    console.log(req.body.reportNo)
+
+    database.getUser(reportNo,(err,data)=>{
+        if (err) throw err;
+            //console.log(labreport);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "Lab Report not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
 module.exports = router;

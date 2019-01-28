@@ -30,4 +30,24 @@ router.post("/addDoctor", function (req, res) {
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var doctorRegNo= req.body.doctorRegNo;
+    console.log(req.body.doctorRegNo)
+
+    database.getUser(doctorRegNo,(err,data)=>{
+        if (err) throw err;
+            //console.log(doctor);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "Doctor not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
 module.exports = router;

@@ -30,5 +30,25 @@ router.post("/addDiseasedetail", function (req, res) {
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var diseaseDetailId= req.body.diseaseDetailId;
+    console.log(req.body.diseaseDetailId)
+
+    database.getUser(diseaseDetailId,(err,data)=>{
+        if (err) throw err;
+            //console.log(diseasedetail);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "diseasedetail not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
 module.exports = router;
 

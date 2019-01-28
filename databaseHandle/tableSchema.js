@@ -5,7 +5,8 @@ const tables = {
             "roleId varchar(10)," +
             "roleName	varchar(20)," +
             "CONSTRAINT pk_role PRIMARY KEY (roleId))",
-        adduser: "INSERT INTO role (roleId,roleName) VALUE ?"
+        adduser: "INSERT INTO role (roleId,roleName) VALUE ?",
+        getUser: "SELECT * FROM role where ?"
     },
 
     users: {
@@ -32,7 +33,8 @@ const tables = {
             "NIC VARCHAR(15)," +
             "CONSTRAINT pk_mlt PRIMARY KEY (mltRegNo)," +
             "CONSTRAINT fk_mlt_users FOREIGN KEY (NIC) REFERENCES users(NIC) ON DELETE CASCADE)",
-        adduser: "INSERT INTO mlt(NIC,mltRegNo)VALUE ?"
+        adduser: "INSERT INTO mlt(NIC,mltRegNo)VALUE ?",
+        getUser: "SELECT * FROM mlt where ?"
     },
 
     patient: {
@@ -47,8 +49,10 @@ const tables = {
             " NIC VARCHAR(15)," +
             "CONSTRAINT pk_patient PRIMARY KEY (patientId)," +
             "CONSTRAINT fk_patient_users FOREIGN KEY (NIC) REFERENCES users(NIC) ON DELETE CASCADE)",
-        adduser: "INSERT INTO patient(patientId,dob,occupation,bloodType,maritalState,height,weight,NIC)VALUE ?"
+        adduser: "INSERT INTO patient(patientId,dob,occupation,bloodType,maritalState,height,weight,NIC)VALUE ?",
+        getUser: "SELECT * FROM patient where ?"
     },
+
 
     doctor: {
         createTable: "CREATE TABLE doctor (" +
@@ -60,7 +64,8 @@ const tables = {
             " CONSTRAINT pk_doctor PRIMARY KEY (doctorRegNo)," +
             "CONSTRAINT fk_doctor_users FOREIGN KEY (NIC) REFERENCES users(NIC) ON DELETE CASCADE )",
 
-        adduser: "INSERT INTO doctor(doctorRegNo,doctorField,doctorDesignation,workAddress,NIC)VALUE ?"
+        adduser: "INSERT INTO doctor(doctorRegNo,doctorField,doctorDesignation,workAddress,NIC)VALUE ?",
+        getUser: "SELECT * FROM doctor where ?"
     },
 
     frontdesk: {
@@ -70,8 +75,8 @@ const tables = {
             "CONSTRAINT pk_frontdesk PRIMARY KEY (frontDeskId)," +
             "CONSTRAINT fk_frontdesk_users FOREIGN KEY (NIC) REFERENCES users(NIC) ON DELETE CASCADE)",
 
-        adduser: "INSERT INTO frontdesk (NIC,frontDeskId) VALUE ?"
-
+        adduser: "INSERT INTO frontdesk (NIC,frontDeskId) VALUE ?",
+        getUser: "SELECT * FROM frontdesk where ?"
     },
 
     patientbasichealthinfo: {
@@ -86,7 +91,8 @@ const tables = {
             " CONSTRAINT pk_patientbasichealthinfo PRIMARY KEY ()," +
             " CONSTRAINT fk_patientbasichealthinfo_patient FOREIGN KEY (patientId) REFERENCES patient(patientId) ON DELETE CASCADE )",
 
-        adduser: "INSERT INTO patientbasichealthinfo( patientId,currentDate,cholestorol,socialDisease,allergy,bloodPresure,bloodSugar)VALUE ?"
+        adduser: "INSERT INTO patientbasichealthinfo( patientId,currentDate,cholestorol,socialDisease,allergy,bloodPresure,bloodSugar)VALUE ?",
+        getUser: "SELECT * FROM patientbasichealthinfo where ?"
     },
 
     labreport: {
@@ -96,8 +102,10 @@ const tables = {
             "  pdfLocation VARCHAR(100)," +
             "CONSTRAINT pk_labreport PRIMARY KEY(reportNo)",
 
-        adduser: "INSERT INTO labreport(reportNo,reportName,pdfLocation)VALUE ?"
+        adduser: "INSERT INTO labreport(reportNo,reportName,pdfLocation)VALUE ?",
+        getUser: "SELECT * FROM  labreport where ?"
     },
+    
 
     diseasedetail:{ 
         createTable:"CREATE TABLE diseasedetail("+
@@ -107,7 +115,8 @@ const tables = {
         "diseaseDate DATE,"+
        " CONSTRAINT pk_diseasedetail PRIMARY KEY(diseaseDetailId)",
 
-       adduser: "INSERT INTO diseasedetail(diseaseDetailId,diseaseDescription,reportAssign,diseaseDate)VALUE ?"
+       adduser: "INSERT INTO diseasedetail(diseaseDetailId,diseaseDescription,reportAssign,diseaseDate)VALUE ?",
+       getUser: "SELECT * FROM diseasedetail where ?"
 },
 
 prescription:{
@@ -123,8 +132,8 @@ prescription:{
        " CONSTRAINT fk_prescription_doctor FOREIGN KEY(doctorRegNo) REFERENCES doctor(doctorRegNo) ON DELETE CASCADE )"+
        "CONSTRAINT fk_prescription_diseasedetail FOREIGN KEY(diseaseDetailId) REFERENCES diseasedetail(diseaseDetailId) ON DELETE CASCADE )",
 
-
-       adduser:"INSERT INTO prescription(prescriptionId,issueDate,expireDate,madicineName,doctorRegNo,diseaseDetailId,recommandedTest)VALUE ?"
+        adduser:"INSERT INTO prescription(prescriptionId,issueDate,expireDate,madicineName,doctorRegNo,diseaseDetailId,recommandedTest)VALUE ?",
+        getUser: "SELECT * FROM prescription where ?"
 },
    
     
@@ -141,8 +150,8 @@ prescription:{
            " CONSTRAINT fk_appointment_patient FOREIGN KEY(patientId) REFERENCES patient(patientId) ON DELETE CASCADE )"+
            " CONSTRAINT fk_appointment_doctor FOREIGN KEY(doctorRegNo) REFERENCES doctor (doctorRegNo) ON DELETE CASCADE )",
 
-
-        adduser:" INSERT INTO appointment(appId,appDate,appTime,appStatus,patientId,doctorRegNo)VALUE ?"
+        adduser:" INSERT INTO appointment(appId,appDate,appTime,appStatus,patientId,doctorRegNo)VALUE ?",
+        getUser: "SELECT * FROM appointment where ?"
 
        },
        appSchedule:{
@@ -155,7 +164,18 @@ prescription:{
              " CONSTRAINT pk_appSchedule PRIMARY KEY (appScheduleId)"+
              "CONSTRAINT fk_appSchedule_doctor FOREIGN KEY(doctorRegNo) REFERENCES doctor(doctorRegNo) ON DELETE CASCADE)",
 
-          adduser:" INSERT INTO appSchedule(appScheduleId,noOfAppointments,dateTimeIn,dateTimeOut,doctorRegNo)VALUE ?"
+          adduser:" INSERT INTO appSchedule(appScheduleId,noOfAppointments,dateTimeIn,dateTimeOut,doctorRegNo)VALUE ?",
+          getUser: "SELECT * FROM appSchedule where ?"
+        },
+
+        medicine:{
+            createTable:  "CREATE TABLE medicine ("+
+               " madicineName VARCHAR(100),"+
+                " medicineNo VARCHAR(50),"+
+              " CONSTRAINT pk_medicineNo PRIMARY KEY (medicineNo))",
+           
+              adduser:" INSERT INTO medicine (madicineName, medicineNo)VALUE?",
+            
         },
       
          

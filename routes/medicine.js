@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/jwt');
 const database = require('../databaseHandle/connectDatabase');
 
-router.post("/addRole",function(req,res){
+router.post("/addMedicine",function(req,res){
     
     const roleData = [
-        req.body.roleId,
-        req.body.roleName
+        req.body.madicineName,
+        req.body.medicineNo
     ]
 
     database.addRole(roleData,function(err,result){
@@ -23,7 +23,7 @@ router.post("/addRole",function(req,res){
     });
 })
 
-router.post("/getuser", function (req, res) {
+/*router.post("/getuser", function (req, res) {
     console.log("getting");
     var roleId= req.body.roleId;
     console.log(req.body.roleId)
@@ -41,7 +41,7 @@ router.post("/getuser", function (req, res) {
         }
     });
 
-});
+});*/
 
 
 module.exports = router;

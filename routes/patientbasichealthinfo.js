@@ -34,6 +34,26 @@ router.post("/addPatientbasichealthinfo", function (req, res) {
     });
 })
 
+router.post("/getuser", function (req, res) {
+    console.log("getting");
+    var patientId= req.body.patientId;
+    console.log(req.body.patientId)
+
+    database.getUser(patientId,(err,data)=>{
+        if (err) throw err;
+            //console.log(patientbasichealthinfo);
+        if (!data) {
+            //console.log(err);
+            res.json({ success: false, msg: "patientbasichealthinfo not found" });
+        }
+        else{
+            console.log(data);
+            res.json({data})
+        }
+    });
+
+});
+
 
     
 
